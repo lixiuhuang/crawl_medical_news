@@ -4,8 +4,7 @@ from typing import List, Dict, Any, Optional, Union
 import asyncio
 import logging
 from datetime import datetime
-# from crawlers import PubMedCrawler, YimaotongCrawler, DingxiangyuanCrawler
-from crawlers import  YimaotongCrawler, DingxiangyuanCrawler
+from crawlers import  YimaitongCrawler, DingxiangyuanCrawler
 from models.schemas import CrawlRequest, CrawlParameters, CrawlResponse, Article
 from models.enums import DataSource
 
@@ -35,7 +34,7 @@ class MedicalCrawlerExecutor:
         # 初始化爬虫
         crawlers = {
             # DataSource.PUBMED: PubMedCrawler(),
-            DataSource.YIMAOTONG: YimaotongCrawler(),
+            DataSource.YIMAITONG: YimaitongCrawler(),
             DataSource.DINGXIANGYUAN: DingxiangyuanCrawler()
         }
         
@@ -69,6 +68,23 @@ class MedicalCrawlerExecutor:
         }
 
 # MCP工具端点
+@app.get("/tools/crawl_dxy")
+async def crawl_dxy():
+    try:
+        result = await DingxiangyuanCrawler().crawl("医疗", limit=20)
+        return {"status": "success", "data": result}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+# MCP工具端点
+@app.get("/tools/crawl_yimaitong")
+async def crawl_ymt():
+    try:
+        result = await YimaitongCrawler().crawl("医疗", limit=20)
+        return {"status": "success", "data": result}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
 @app.post("/mcp/tool")
 async def execute_tool(request: Request, crawl_request: CrawlRequest) -> CrawlResponse:
     try:
@@ -106,4 +122,4 @@ async def health_check():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8080)

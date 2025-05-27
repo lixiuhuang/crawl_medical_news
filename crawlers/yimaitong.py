@@ -11,9 +11,9 @@ from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
-class YimaotongCrawler(BaseCrawler):
+class YimaitongCrawler(BaseCrawler):
     def __init__(self):
-        super().__init__(DataSource.YIMAOTONG)
+        super().__init__(DataSource.YIMAITONG)
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
         }

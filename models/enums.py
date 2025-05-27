@@ -3,7 +3,7 @@ from enum import Enum
 
 class DataSource(str, Enum):
     """数据源枚举"""
-    YIMAOTONG = "yimaotong"
+    YIMAITONG = "yimaitong"
     DINGXIANGYUAN = "dingxiangyuan"
 
 class CrawlType(str, Enum):

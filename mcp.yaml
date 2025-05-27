@@ -1,0 +1,39 @@
+# MCP服务器配置
+name: medical-news-crawler
+version: 0.1.0
+description: 医疗新闻爬虫服务
+
+# 服务配置
+server:
+  port: 8080
+  workers: 4
+
+# 工具定义
+tools:
+  - name: crawl_dxy
+    description: 爬取丁香园医疗新闻
+    handler: crawlers.dingxiangyuan:DingxiangyuanCrawler.crawl
+    methods: [GET]
+    args:
+      source: DINGXIANGYUAN
+  
+  - name: crawl_pubmed
+    description: 爬取PubMed医学文献
+    handler: crawlers.pubmed:PubMedSpider.run  
+    methods: [GET]
+    args:
+      source: PUBMED
+
+  - name: crawl_yimaitong
+    description: 爬取医脉通医疗资讯
+    handler: crawlers.yimaitong:YiMaiTongSpider.run
+    methods: [GET]
+    args:
+      source: YIMAITONG
+
+# 依赖项
+dependencies:
+  - fastapi>=0.68.0
+  - uvicorn>=0.15.0
+  - requests>=2.26.0
+  - beautifulsoup4>=4.9.3

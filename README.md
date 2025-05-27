@@ -10,7 +10,7 @@ crawl_medical_news/
 ├── main.py                # FastAPI主程序
 ├── crawlers/              # 爬虫模块
 │   ├── pubmed.py          # PubMed爬虫
-│   ├── yimaotong.py       # 医脉通爬虫
+│   ├── yimaitong.py       # 医脉通爬虫
 │   └── dingxiangyuan.py   # 丁香园爬虫
 ├── models/                # 数据模型
 │   ├── schemas.py         # 数据结构定义

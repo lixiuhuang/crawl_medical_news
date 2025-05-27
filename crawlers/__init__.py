@@ -1,3 +1,3 @@
 # from .pubmed import PubMedCrawler
-from .yimaotong import YimaotongCrawler
+from .yimaitong import YimaitongCrawler
 from .dingxiangyuan import DingxiangyuanCrawler

@@ -19,7 +19,7 @@ class Article(BaseModel):
 class CrawlParameters(BaseModel):
     """爬虫参数模型"""
     keywords: List[str] = Field(..., description="搜索关键词列表")
-    sources: List[DataSource] = Field([DataSource.YIMAOTONG], description="数据源列表")
+    sources: List[DataSource] = Field([DataSource.YIMAITONG], description="数据源列表")
     limit: int = Field(10, description="每个关键词的最大结果数")
     since_date: Optional[str] = Field(None, description="起始日期，格式: YYYY-MM-DD")
     

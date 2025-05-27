@@ -8,6 +8,12 @@ from typing import List, Optional
 logger = logging.getLogger(__name__)
 
 class BaseCrawler:
+    @classmethod
+    def run(cls, source: DataSource):
+        """MCP工具调用的入口方法"""
+        instance = cls(source)
+        return instance.crawl()
+        
     def __init__(self, source: DataSource):
         self.source = source
         self.headers = {
